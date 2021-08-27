@@ -3,26 +3,25 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    private float timeToSpawn = 5f;
-    private float timeSinceSpawn;
-    private RunnerPooling objectPool;
-
+  
+ 
+    private RunnerPool objectPool;
+    
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = FindObjectOfType<RunnerPooling>();
+        objectPool = FindObjectOfType<RunnerPool>();
+       // AddRunner(340);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddRunner(int amount)
     {
-     //   timeSinceSpawn += Time.deltaTime;
-        if (timeSinceSpawn >= timeToSpawn)
+      for(int i=0;i<amount;i++)
         {
-            GameObject newRunner = objectPool.GetRunner();
-            newRunner.transform.position = this.transform.position;
-            timeSinceSpawn = 0f;
+            Runner newRunner = objectPool.GetRunner();
+            newRunner.transform.position = this.transform.position + 0.1f*Vector3.back;
+           
         }
     }
+  
 }

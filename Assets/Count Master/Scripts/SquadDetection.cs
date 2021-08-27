@@ -25,6 +25,11 @@ public class SquadDetection : MonoBehaviour
     public bool checkBoss = false; 
     public bool checkCannon = false;
     bool fightBoss = false;
+    Spawner spawner;
+    private void Start()
+    {
+        spawner = FindObjectOfType<Spawner>();
+    }
     void Update()
     {
         
@@ -34,7 +39,7 @@ public class SquadDetection : MonoBehaviour
             
                 DetectionBoss();
 
-            if (!checkCannon) DetectCannon();
+           
             
             DetectDoors3();
             DetectDoors2();
@@ -62,7 +67,7 @@ public class SquadDetection : MonoBehaviour
             transform.position = pos;
         
     }
-    private void DetectCannon()
+  /*  private void DetectCannon()
     {
         if (Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadiusActive(), cannonLayer).Length > 0)
         {
@@ -78,12 +83,12 @@ public class SquadDetection : MonoBehaviour
         }
        else FindObjectOfType<SquadController>().run = true;
     }
-
+  */
     private void DetectionBoss()
     {
 
         Vector3 distance = transform.position  ;
-        Collider[] detectBoss = Physics.OverlapSphere(distance, runnerFormation.GetSquadRadius()+6f, bossLayer);
+        Collider[] detectBoss = Physics.OverlapSphere(distance, runnerFormation.GetSquadRadiusActive()+6f, bossLayer);
            if (detectBoss.Length <= 0) return;
 
         Collider colliderBoss = detectBoss[0];
@@ -109,7 +114,7 @@ public class SquadDetection : MonoBehaviour
    
     private void DetectDoors3()
     {
-        Collider[] detectedDoors = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadius(), doorLayer3);
+        Collider[] detectedDoors = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadiusActive(), doorLayer3);
 
         if (detectedDoors.Length <= 0) return;
 
@@ -119,13 +124,13 @@ public class SquadDetection : MonoBehaviour
         int runnersAmountToAdd = collidedDoor.GetRunnersAmountToAdd( runnersParent.childCount);
 
 
-        if (runnersAmountToAdd > 0) runnerFormation.AddRunners(runnersAmountToAdd);
-        else runnerFormation.DelRunners(-runnersAmountToAdd);
+      if (runnersAmountToAdd > 0) spawner.AddRunner(runnersAmountToAdd);
+     //   else runnerFormation.DelRunners(-runnersAmountToAdd);
         
     }
     private void DetectDoors2()
     {
-        Collider[] detectedDoors = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadius(), doorLayer2);
+        Collider[] detectedDoors = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadiusActive(), doorLayer2);
 
         if (detectedDoors.Length <= 0) return;
 
@@ -133,10 +138,10 @@ public class SquadDetection : MonoBehaviour
         Door collidedDoor = collidedDoorCollider.GetComponentInParent<Door>();
 
         int runnersAmountToAdd = collidedDoor.GetRunnersAmountToAdd(collidedDoorCollider, runnersParent.childCount);
-        
 
-        if (runnersAmountToAdd > 0) runnerFormation.AddRunners(runnersAmountToAdd);
-        else runnerFormation.DelRunners(-runnersAmountToAdd);
+
+        if (runnersAmountToAdd > 0) spawner.AddRunner(runnersAmountToAdd);
+           else runnerFormation.DelRunner(-runnersAmountToAdd);
 
     }
     private void DetectFinishLine()
@@ -164,7 +169,7 @@ public class SquadDetection : MonoBehaviour
 
     private void DetectionLadder2()
     {
-        Collider[] detectedLadder = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadius(), ladder2Layer);
+        Collider[] detectedLadder = Physics.OverlapSphere(transform.position, runnerFormation.GetSquadRadiusActive(), ladder2Layer);
         if (detectedLadder.Length <= 0) return;
         checkCannon = true;
         fightBoss = true;

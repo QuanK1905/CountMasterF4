@@ -1,13 +1,11 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
-using JetSystems;
+
 
 public class Runner : MonoBehaviour
 {
     [Header(" Components ")]
     [SerializeField] private Animator animator;
-    [SerializeField] private Collider collider;
-    [SerializeField] private Renderer renderer;
 
 
     [Header(" Target Settings ")]
@@ -15,46 +13,40 @@ public class Runner : MonoBehaviour
 
     [Header(" Detection ")]
     [SerializeField] private LayerMask obstaclesLayer;
-    private RunnerPooling objectPool;
-    public Transform home;
+    
+   
+   
     public NavMeshAgent agent;
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = FindObjectOfType<RunnerPooling>();
+       
         home = transform.parent;
         animator.speed = Random.Range(1f, 2f);
         animator.GetComponent<Animator>();
+        agent = this.GetComponent<NavMeshAgent>();
     }
-    private void OnDisable()
-    {
-        if (objectPool != null)
-            objectPool.ReturnRunner(this.gameObject);
-    }
-    bool resetPos = true;
+    public Transform home;
+  
     void Update()
     {
        
-        if (!collider.enabled)
-            return;
-
-        agent = this.GetComponent<NavMeshAgent>();
-        if (home != null && resetPos)
-        {
-            float radius = FindObjectOfType<RunnerFormation>().GetSquadRadius();
-            float distance = Vector3.Distance(transform.position, home.position);
-            if (distance > radius) agent.speed = distance;
-            else agent.speed = 0.1f;
         
-        agent.SetDestination(home.position);
+
+        if (home != null )
+        {
+     
+         //   float radius = FindObjectOfType<RunnerFormation>().GetSquadRadius();
+         //   float distance = Vector3.Distance(transform.position, home.position);
+         //   if (distance > radius) agent.speed = distance;
+         //   else agent.speed = 0.05f;
+        
+            agent.SetDestination(home.position);
         }
         DetectObstacles();
         
     }
-    public void ResetPos()
-    {
-        resetPos = !resetPos;
-    }
+    
 
 
     private void DetectObstacles()
@@ -65,22 +57,9 @@ public class Runner : MonoBehaviour
             
     }
     
-    public void DetectCannon()
-    {
-
-        if (!gameObject.activeSelf) return;
-
-            Vector3 pos = transform.parent.parent.position + 1*Vector3.forward;
-            pos.x = 0;
-        transform.position = Vector3.MoveTowards(transform.position, pos, 4 * Time.deltaTime);
-        if (transform.position == pos) gameObject.SetActive(false);
-       
-
-    }
+   
     public void IsFighting()
     {
-      
-      //  animator.SetBool("isRunning", false);
         animator.SetBool("isFighting",true);
     }
     public void StopFighting()
@@ -95,7 +74,7 @@ public class Runner : MonoBehaviour
      
     }
   
-    public void StartRunning()
+   public void StartRunning()
     {
         animator.SetInteger("State", 1);
 
@@ -119,7 +98,7 @@ public class Runner : MonoBehaviour
    
     public void Explode()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         Audio_Manager.instance.play("Runner_Die");
     }
 }
