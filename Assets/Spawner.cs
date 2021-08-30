@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
       for(int i=0;i<amount;i++)
         {
             Runner newRunner = objectPool.GetRunner();
-            newRunner.transform.position = this.transform.position + 0.1f*Vector3.back;
+            newRunner.transform.position = this.transform.position + 0.1f*Vector3.left;
            
         }
     }

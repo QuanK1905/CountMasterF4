@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -110,7 +109,9 @@ namespace JetSystems
 
             // Get the coins amount
             COINS = PlayerPrefsManager.GetCoins();
+            
             UpdateCoins();
+            print(COINS);
         }
 
         // Start is called before the first frame update
@@ -187,7 +188,7 @@ namespace JetSystems
 
             // Update the level text
             levelText.text = "Level " + (PlayerPrefsManager.GetLevel() + 1);
-            Audio_Manager.instance.play("Play");
+           // Audio_Manager.instance.play("Play");
         }
 
         public void SetLevelComplete(int starsCount = 3)
@@ -299,7 +300,7 @@ namespace JetSystems
         {
             // Increase the amount of coins
             COINS += amount;
-
+            print(COINS);
             // Update the coins
             instance.UpdateCoins();
 

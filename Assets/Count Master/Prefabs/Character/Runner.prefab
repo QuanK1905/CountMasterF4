@@ -48,7 +48,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.51
   m_Direction: 1
-  m_Center: {x: 0, y: 0.57, z: 0}
+  m_Center: {x: 0, y: 0.69, z: 0}
 --- !u!114 &1935070224446228412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,9 +62,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4034322739848933855}
+  collider: {fileID: 1565327336554739919}
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 2048
+  holeLayer:
+    serializedVersion: 2
+    m_Bits: 262144
   agent: {fileID: 258315684902745506}
   home: {fileID: 0}
 --- !u!195 &258315684902745506
