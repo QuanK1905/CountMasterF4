@@ -44,9 +44,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.96
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &5273687665106854984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   runnersLayer:
     serializedVersion: 2
     m_Bits: 512
-  detectionDistance: 10
+  detectionDistance: 12
   moveSpeed: 13
   animator: {fileID: 511560310705702146}
 --- !u!95 &511560310705702146
