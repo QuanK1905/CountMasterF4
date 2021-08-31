@@ -106,7 +106,7 @@ public class SquadDetection : MonoBehaviour
             runner.agent.speed = 1;
         }
         
-        runnerFormation.HideText();
+       
         
 
     }
@@ -173,6 +173,7 @@ public class SquadDetection : MonoBehaviour
         if (detectedLadder.Length <= 0) return;
         checkCannon = true;
         fightBoss = true;
+        runnerFormation.HideText();
         FindObjectOfType<CameraFollow>().ChangeView();
     }
 

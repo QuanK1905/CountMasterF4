@@ -11,6 +11,7 @@ namespace JetSystems
         static string ITEMUNLOCKEDKEY = "ITEMUNLOCKED";
         static string SOUNDKEY = "SOUNDS";
         static string LEVELKEY = "LEVEL";
+        static string UNITLEVELKEY = "UNITLEVEL";
 
 
 
@@ -21,7 +22,12 @@ namespace JetSystems
         { PlayerPrefs.SetInt(COINSKEY, coinsAmount); }
 
 
-
+        public static int GetUnitLevel()
+        { return PlayerPrefs.GetInt(UNITLEVELKEY); }
+        public static void SaveUnitLevel()
+        {
+            PlayerPrefs.SetInt(UNITLEVELKEY,1);
+        }
 
 
         public static int GetItemUnlockedState(int itemIndex)

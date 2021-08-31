@@ -52,9 +52,10 @@ public class SquadController : MonoBehaviour
         clickedPosition = transform.position;
         
     }
-
+    public bool swipe = false;
     public void GetSlideValue(Vector2 slideInput)
     {
+        if (!swipe) return;
        
         slideInput.x *= moveCoefficient;
         float targetX = clickedPosition.x + slideInput.x;

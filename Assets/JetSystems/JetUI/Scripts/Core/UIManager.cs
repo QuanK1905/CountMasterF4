@@ -16,6 +16,8 @@ namespace JetSystems
         #region Static Variables
 
         public static int COINS;
+        public static int UNITLEVEL;
+
         public static UIManager instance;
 
         #endregion
@@ -109,7 +111,7 @@ namespace JetSystems
 
             // Get the coins amount
             COINS = PlayerPrefsManager.GetCoins();
-            
+            UNITLEVEL = PlayerPrefsManager.GetUnitLevel();
             UpdateCoins();
             print(COINS);
         }
@@ -179,7 +181,7 @@ namespace JetSystems
         {
             gameState = GameState.GAME;
             Utils.HideAllCGs(canvases, GAME);
-
+            FindObjectOfType<SquadController>().swipe = true;
             // Invoke the delegate
             onGameSet?.Invoke();
 
