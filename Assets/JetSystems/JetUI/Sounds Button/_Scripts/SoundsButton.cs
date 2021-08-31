@@ -58,7 +58,7 @@ namespace JetSystems
 
             StopAllCoroutines();
             StartCoroutine("SwitchStateCoroutine");
-            //image.sprite = soundOnSprite;
+            image.sprite = soundOnSprite;
 
         }
 
@@ -67,7 +67,7 @@ namespace JetSystems
             SetSounds(0);
             state = false;
 
-            //image.sprite = soundOffSprite;
+            image.sprite = soundOffSprite;
             StopAllCoroutines();
             StartCoroutine("SwitchStateCoroutine");
 

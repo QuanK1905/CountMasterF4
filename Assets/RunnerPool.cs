@@ -40,6 +40,23 @@ public class RunnerPool : MonoBehaviour
             return runner;
         }
     }
+    public Runner GetStartRunner()
+    {
+        if (runnerPool.Count > 0)
+        {
+            Runner runner = runnerPool.Dequeue();
+
+            runner.gameObject.SetActive(true);
+            
+            return runner;
+        }
+        else
+        {
+            Runner runner = Instantiate(runnerPrefab, runnerParent);
+           
+            return runner;
+        }
+    }
 
     public void ReturnRunner(Runner runner)
     {

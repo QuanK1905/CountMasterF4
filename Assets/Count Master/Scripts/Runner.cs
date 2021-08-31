@@ -57,13 +57,13 @@ public class Runner : MonoBehaviour
         Collider colliderHole = detectHole[0];
     {
 
-            transform.LookAt(colliderHole.transform);
+      //      transform.LookAt(colliderHole.transform);
             IsFalling();
             transform.parent = null;
             StartCoroutine(Die());
             IEnumerator Die()
             {
-                yield return new WaitForSeconds(0.8f);
+                yield return new WaitForSeconds(0.5f);
                 Explode();
             }
         }

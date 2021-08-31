@@ -17,7 +17,7 @@ namespace JetSystems
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            LeanTween.scale(gameObject, Vector3.one * 0.9f, duration);
+            LeanTween.scale(gameObject, Vector3.one * 0.98f, duration);
         }
 
         public void OnPointerUp(PointerEventData eventData)

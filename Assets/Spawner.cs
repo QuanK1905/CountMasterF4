@@ -23,5 +23,14 @@ public class Spawner : MonoBehaviour
            
         }
     }
-  
+    public void AddStartRunner(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Runner newRunner = objectPool.GetStartRunner();
+            newRunner.transform.position = this.transform.position + 0.1f * Vector3.left;
+
+        }
+    }
+
 }

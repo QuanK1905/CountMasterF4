@@ -181,7 +181,8 @@ public class SquadDetection : MonoBehaviour
     public void SetLevelComplete()
     {
         UIManager.setLevelCompleteDelegate?.Invoke(3);
-       
+        UIManager.AddCoins(222);
+
     }
 
 
