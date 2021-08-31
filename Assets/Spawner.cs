@@ -11,11 +11,13 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         objectPool = FindObjectOfType<RunnerPool>();
-       // AddRunner(340);
+        int runnerStart = PlayerPrefs.GetInt("UNITLEVEL");
+        AddRunner(runnerStart-1);
     }
 
     public void AddRunner(int amount)
     {
+        if (amount == 0) return;
       for(int i=0;i<amount;i++)
         {
             Runner newRunner = objectPool.GetRunner();

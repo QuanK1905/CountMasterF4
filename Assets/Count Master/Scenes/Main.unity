@@ -873,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 75, y: 70}
+  m_AnchoredPosition: {x: 75, y: 74}
   m_SizeDelta: {x: 335.9, y: 56.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674911900
@@ -1478,8 +1478,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1258475019}
-        m_MethodName: AddStartRunner
+      - m_Target: {fileID: 2247907018592832523}
+        m_MethodName: AddUnitLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4208,6 +4208,7 @@ MonoBehaviour:
   shopManager: {fileID: 7584128946580103773}
   canvases: []
   menuCoinsText: {fileID: 2247907018590381523}
+  UnitLevelText: {fileID: 0}
   progressBar: {fileID: 2247907019350208547}
   gameCoinsText: {fileID: 3008813193754490649}
   levelText: {fileID: 963667235141789588}
@@ -5628,7 +5629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2247907019377103725
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7719,7 +7720,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.62, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

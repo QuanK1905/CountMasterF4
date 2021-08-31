@@ -88,7 +88,7 @@ namespace JetSystems
 
         // Menu UI
         public Text menuCoinsText;
-
+        public Text UnitLevelText;
         // Game UI
         public Slider progressBar;
         public Text gameCoinsText;
@@ -113,7 +113,7 @@ namespace JetSystems
             COINS = PlayerPrefsManager.GetCoins();
             UNITLEVEL = PlayerPrefsManager.GetUnitLevel();
             UpdateCoins();
-            print(COINS);
+            
         }
 
         // Start is called before the first frame update
@@ -295,14 +295,29 @@ namespace JetSystems
             shopCoinsText.text = menuCoinsText.text;
             levelCompleteCoinsText.text = menuCoinsText.text;
         }
+        private void UpdateUnitLevel()
+        {
+         //   UnitLevelText.text = Utils.FormatAmountString(UNITLEVEL);
+            
+        }
+        public  void AddUnitLevel(int amount)
+        {
+            // Increase the amount of coins
+            UNITLEVEL += amount;
+            FindObjectOfType<Spawner>().AddStartRunner(1);
+            // Update the coins
+            instance.UpdateUnitLevel();
 
+            // Save the amount of coins
+            PlayerPrefsManager.SaveUnitLevel(UNITLEVEL);
+        }
         #region Static Methods
 
         public static void AddCoins(int amount)
         {
             // Increase the amount of coins
             COINS += amount;
-            print(COINS);
+         
             // Update the coins
             instance.UpdateCoins();
 
@@ -310,6 +325,7 @@ namespace JetSystems
             PlayerPrefsManager.SaveCoins(COINS);
         }
 
+       
         public static bool IsGame()
         {
             return gameState == GameState.GAME;

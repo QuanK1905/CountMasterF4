@@ -24,9 +24,9 @@ namespace JetSystems
 
         public static int GetUnitLevel()
         { return PlayerPrefs.GetInt(UNITLEVELKEY); }
-        public static void SaveUnitLevel()
+        public static void SaveUnitLevel(int amount)
         {
-            PlayerPrefs.SetInt(UNITLEVELKEY,1);
+            PlayerPrefs.SetInt(UNITLEVELKEY,amount);
         }
 
 
