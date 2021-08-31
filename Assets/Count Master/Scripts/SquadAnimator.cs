@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using JetSystems;
 
@@ -22,18 +21,6 @@ public class SquadAnimator : MonoBehaviour
         UIManager.onLevelCompleteSet -= StopRunning;
         UIManager.onMenuSet -= StopRunning;
         UIManager.onGameoverSet -= StopRunning;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void StartRunning()

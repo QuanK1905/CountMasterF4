@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1565327336554739919}
   - component: {fileID: 1935070224446228412}
   - component: {fileID: 258315684902745506}
+  - component: {fileID: -8889910622973605247}
   m_Layer: 9
   m_Name: Runner
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3398361933029248457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5995548, y: -0.27442455, z: -0.77969354}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_Children:
   - {fileID: 7698186906160507968}
   m_Father: {fileID: 0}
@@ -47,7 +48,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.51
   m_Direction: 1
-  m_Center: {x: 0, y: 0.57, z: 0}
+  m_Center: {x: 0, y: 0.69, z: 0}
 --- !u!114 &1935070224446228412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,12 +63,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4034322739848933855}
   collider: {fileID: 1565327336554739919}
-  renderer: {fileID: 2233307279021523655}
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 2048
+  holeLayer:
+    serializedVersion: 2
+    m_Bits: 262144
+  agent: {fileID: 258315684902745506}
   home: {fileID: 0}
-  agent: {fileID: 0}
 --- !u!195 &258315684902745506
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -77,8 +80,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 3398361933029248457}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.32
-  m_Speed: 0.1
+  m_Radius: 0.4
+  m_Speed: 0.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -90,6 +93,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8889910622973605247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398361933029248457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a505dd79d5db5489a5a3822000a0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4034322739848933855
 Animator:
   serializedVersion: 3
@@ -232,12 +247,6 @@ GameObject:
 --- !u!4 &7698186906160507968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fb0668fe77ed634a973feee6a29ac24,
-    type: 3}
-  m_PrefabInstance: {fileID: 7881243587059370923}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &2233307279021523655 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -891290056698853012, guid: 5fb0668fe77ed634a973feee6a29ac24,
     type: 3}
   m_PrefabInstance: {fileID: 7881243587059370923}
   m_PrefabAsset: {fileID: 0}

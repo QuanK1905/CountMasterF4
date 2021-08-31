@@ -9,29 +9,20 @@ namespace JetSystems
 
     public class AnimatedElement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        public LeanTweenType tweenType;
+        
         public float duration;
 
         // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+   
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            LeanTween.scale(gameObject, Vector3.one * 0.9f, duration).setEase(tweenType);
+            LeanTween.scale(gameObject, Vector3.one * 0.98f, duration);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            LeanTween.scale(gameObject, Vector3.one, duration).setEase(tweenType);
+            LeanTween.scale(gameObject, Vector3.one, duration);
         }
     }
 }

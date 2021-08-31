@@ -16,7 +16,7 @@ public class test : MonoBehaviour
         count++;
         explodeParticles.Play();
         Audio_Manager.instance.play("Bomb");
-        FindObjectOfType<RunnerFormation>().DelRunners(5);
+        FindObjectOfType<RunnerFormation>().DelRunner(5);
        
     }
     // Update is called once per frame

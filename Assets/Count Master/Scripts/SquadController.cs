@@ -24,8 +24,14 @@ public class SquadController : MonoBehaviour
 
     // Update is called once per frame
     public bool run =true;
+    float radius,maxX;
     void Update()
     {
+        radius = runnerFormation.GetSquadRadiusActive();
+        
+        if (radius > platformWidth / 2) maxX = 0;
+        else maxX = platformWidth / 2 - radius;
+        
         
         if (UIManager.IsGame())
             if(run)
@@ -49,10 +55,11 @@ public class SquadController : MonoBehaviour
 
     public void GetSlideValue(Vector2 slideInput)
     {
+       
         slideInput.x *= moveCoefficient;
         float targetX = clickedPosition.x + slideInput.x;
 
-        float maxX = platformWidth / 2 - runnerFormation.GetSquadRadius();
+       
 
         targetX = Mathf.Clamp(targetX, -maxX, maxX);
 

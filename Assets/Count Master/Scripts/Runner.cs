@@ -1,87 +1,84 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
-using JetSystems;
+using System.Collections;
 
 public class Runner : MonoBehaviour
 {
     [Header(" Components ")]
     [SerializeField] private Animator animator;
     [SerializeField] private Collider collider;
-    [SerializeField] private Renderer renderer;
-
 
     [Header(" Target Settings ")]
     private bool targeted;
 
     [Header(" Detection ")]
     [SerializeField] private LayerMask obstaclesLayer;
-    private RunnerPooling objectPool;
-    public Transform home;
+    [SerializeField] private LayerMask holeLayer;
+
+
     public NavMeshAgent agent;
     // Start is called before the first frame update
+
+    Vector3 pos;
     void Start()
     {
-        objectPool = FindObjectOfType<RunnerPooling>();
+        
         home = transform.parent;
         animator.speed = Random.Range(1f, 2f);
         animator.GetComponent<Animator>();
+        agent = this.GetComponent<NavMeshAgent>();
     }
-    private void OnDisable()
-    {
-        if (objectPool != null)
-            objectPool.ReturnRunner(this.gameObject);
-    }
-    bool resetPos = true;
+    public Transform home;
+    
     void Update()
     {
+        
        
-        if (!collider.enabled)
-            return;
-
-        agent = this.GetComponent<NavMeshAgent>();
-        if (home != null && resetPos)
-        {
-            float radius = FindObjectOfType<RunnerFormation>().GetSquadRadius();
-            float distance = Vector3.Distance(transform.position, home.position);
-            if (distance > radius) agent.speed = distance;
-            else agent.speed = 0.1f;
-        
-        agent.SetDestination(home.position);
+        if (home != null)
+        { 
+            agent.SetDestination(home.position);
         }
+        DetectHole();
         DetectObstacles();
-        
-    }
-    public void ResetPos()
-    {
-        resetPos = !resetPos;
-    }
 
-
+    }
     private void DetectObstacles()
     {
         if (Physics.OverlapSphere(transform.position, 0.1f, obstaclesLayer).Length > 0)
-         
-             Explode();
-            
+
+            Explode();
+     }
+
+
+    private void DetectHole()
+    {     Collider[] detectHole = Physics.OverlapSphere(transform.position, 0.1f, holeLayer);
+           if (detectHole.Length <= 0) return;
+
+        Collider colliderHole = detectHole[0];
+    {
+
+      //      transform.LookAt(colliderHole.transform);
+            IsFalling();
+            transform.parent = null;
+            StartCoroutine(Die());
+            IEnumerator Die()
+            {
+                yield return new WaitForSeconds(0.5f);
+                Explode();
+            }
+        }
+      
+
     }
     
-    public void DetectCannon()
-    {
-
-        if (!gameObject.activeSelf) return;
-
-            Vector3 pos = transform.parent.parent.position + 1*Vector3.forward;
-            pos.x = 0;
-        transform.position = Vector3.MoveTowards(transform.position, pos, 4 * Time.deltaTime);
-        if (transform.position == pos) gameObject.SetActive(false);
-       
-
-    }
+   
     public void IsFighting()
     {
-      
-      //  animator.SetBool("isRunning", false);
         animator.SetBool("isFighting",true);
+    }
+    public void IsFalling()
+    {
+        animator.SetBool("isFalling", true);
     }
     public void StopFighting()
     {
@@ -95,7 +92,7 @@ public class Runner : MonoBehaviour
      
     }
   
-    public void StartRunning()
+   public void StartRunning()
     {
         animator.SetInteger("State", 1);
 
@@ -119,7 +116,7 @@ public class Runner : MonoBehaviour
    
     public void Explode()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         Audio_Manager.instance.play("Runner_Die");
     }
 }
